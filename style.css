@@ -1,0 +1,70 @@
+*{box-sizing:border-box}
+:root{
+  --cyan:#38f5ff;--pink:#ff3cac;--purple:#8a5cff;--lime:#a8ff60;
+  --bg:#030611;--panel:rgba(8,13,31,.88);--text:#e9f8ff;
+}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+body{display:grid;place-items:center}
+button{font:inherit}
+.stars,.stars:before,.stars:after{position:fixed;inset:0;content:"";pointer-events:none;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:97px 113px;opacity:.32;animation:drift 28s linear infinite}
+.stars:before{background-size:173px 181px;opacity:.2;animation-duration:45s}
+.stars:after{background-size:61px 79px;opacity:.15;animation-duration:18s}
+@keyframes drift{to{transform:translateY(113px)}}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.018) 4px);mix-blend-mode:screen}
+.game-shell{width:min(1400px,100vw);height:min(900px,100vh);padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:10px;position:relative;z-index:1}
+.hud{min-height:72px;border:1px solid rgba(56,245,255,.2);background:linear-gradient(90deg,rgba(10,19,43,.92),rgba(7,9,26,.82));box-shadow:0 0 35px rgba(56,245,255,.08),inset 0 0 25px rgba(138,92,255,.05);display:flex;align-items:center;gap:26px;padding:12px 18px;clip-path:polygon(0 0,99.4% 0,100% 25%,100% 100%,.6% 100%,0 75%)}
+.brand{display:flex;align-items:center;gap:10px;min-width:220px}.brand-mark{color:var(--cyan);font-size:28px;text-shadow:0 0 16px var(--cyan)}.brand strong{display:block;letter-spacing:.18em;font-size:16px}.brand small,.stat span,.health-wrap>span,.tip,.footer{font-size:9px;letter-spacing:.18em;color:#7e9bb4}
+.stat{display:flex;flex-direction:column;gap:4px}.stat b{font-size:18px;letter-spacing:.08em}.health-wrap{margin-left:auto;display:grid;grid-template-columns:auto 150px auto;gap:8px;align-items:center}.health{height:8px;background:#11182c;border:1px solid #24304a}.health i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--pink),var(--cyan));box-shadow:0 0 12px var(--cyan);transition:width .2s}.health-wrap b{font-size:11px;color:var(--cyan)}.hud-actions{display:flex;gap:6px}.icon-btn{width:38px;height:34px;border:1px solid rgba(56,245,255,.3);background:#091126;color:var(--cyan);cursor:pointer;transition:.18s}.icon-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 16px rgba(56,245,255,.3)}.icon-btn:disabled{opacity:.35;cursor:not-allowed}
+.game-area{position:relative;min-height:0;overflow:hidden;border:1px solid rgba(56,245,255,.18);background:radial-gradient(circle at 50% 90%,rgba(57,26,116,.16),transparent 45%),linear-gradient(#020511,#040719);box-shadow:0 0 60px rgba(0,0,0,.45),inset 0 0 80px rgba(40,90,160,.06)}
+canvas{display:block;width:100%;height:100%}
+.overlay{position:absolute;inset:0;display:none;place-items:center;text-align:center;background:radial-gradient(circle,rgba(5,11,28,.65),rgba(1,3,10,.93));backdrop-filter:blur(4px);z-index:5}.overlay.active{display:grid}.overlay>*{grid-column:1}.overlay>h1{margin:34px 0 5px;font-size:clamp(48px,8vw,110px);line-height:.8;letter-spacing:.08em;text-shadow:0 0 25px rgba(56,245,255,.35)}h1 span{color:var(--cyan)}.overlay h2{font-size:clamp(36px,6vw,76px);letter-spacing:.1em;margin:16px 0}.logo-glow{font-size:42px;color:var(--cyan);text-shadow:0 0 35px var(--cyan);animation:pulse 1.8s infinite}.eyebrow{font-size:10px;letter-spacing:.32em;color:#86a5c0;margin:0}.danger{color:#ff557d}.subtitle{color:#a5b9cc;margin:18px 0 28px}.primary-btn{border:1px solid var(--cyan);background:linear-gradient(100deg,rgba(56,245,255,.16),rgba(138,92,255,.14));color:white;padding:15px 34px;letter-spacing:.2em;font-weight:800;cursor:pointer;clip-path:polygon(5% 0,100% 0,95% 100%,0 100%);box-shadow:0 0 22px rgba(56,245,255,.16);transition:.2s}.primary-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 30px rgba(56,245,255,.35)}.controls-card{margin-top:28px;display:flex;gap:10px;justify-content:center;align-items:center;color:var(--cyan)}.controls-card span{border:1px solid #29405b;padding:7px 10px;background:#091126;font-weight:800}.controls-card small{color:#67829c;margin-right:8px}.pause-icon{font-size:54px;color:var(--cyan);text-shadow:0 0 25px var(--cyan)}.final-score{margin:10px 0 20px;display:flex;flex-direction:column;gap:5px}.final-score span{font-size:9px;letter-spacing:.25em;color:#718ba5}.final-score b{font-size:50px;color:var(--cyan);text-shadow:0 0 18px rgba(56,245,255,.5)}.record{color:var(--lime);font-size:12px;letter-spacing:.12em}.power-status{position:absolute;top:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}.power-chip{padding:7px 10px;background:rgba(5,12,28,.82);border:1px solid currentColor;font-size:9px;letter-spacing:.1em;box-shadow:0 0 14px currentColor}.tip{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);white-space:nowrap;opacity:.65}.tip i{margin:0 7px;color:var(--cyan)}.footer{display:flex;justify-content:space-between;padding:0 4px}.footer b{color:var(--pink)}
+.mobile-controls{display:none;position:fixed;left:0;right:0;bottom:12px;z-index:30;justify-content:center;gap:18px}.mobile-controls button{width:68px;height:56px;border:1px solid rgba(56,245,255,.4);background:rgba(6,13,31,.8);color:var(--cyan);font-size:24px;box-shadow:0 0 18px rgba(56,245,255,.1);touch-action:none}.mobile-controls #fireTouch{color:#ff3cac;border-color:#ff3cac;font-size:27px}
+@keyframes pulse{50%{transform:scale(1.12);opacity:.7}}
+@media(max-width:760px){.game-shell{height:100vh;padding:7px;gap:6px}.hud{gap:10px;padding:8px;min-height:58px;clip-path:none}.brand{min-width:auto}.brand strong{font-size:11px}.brand small{display:none}.brand-mark{font-size:20px}.stat:nth-of-type(2){display:none}.stat b{font-size:13px}.stat span{font-size:7px}.health-wrap{grid-template-columns:auto 65px auto;gap:4px}.health-wrap>span{font-size:7px}.health-wrap b{font-size:9px}.icon-btn{width:31px;height:30px}.game-area{min-height:0}.tip{display:none}.footer{font-size:7px}.mobile-controls{display:flex}.overlay>h1{margin:20px 0 8px}.subtitle{font-size:12px;max-width:280px}.controls-card{display:none}}
+
+
+/* Weapon controls / ammo HUD */
+.weapon-hint {
+  font-size: 11px;
+  opacity: .72;
+  letter-spacing: .08em;
+}
+
+/* Canvas gets a subtle animated arcade presence without external assets. */
+#gameCanvas {
+  animation: arenaPulse 5s ease-in-out infinite;
+}
+@keyframes arenaPulse {
+  0%, 100% { filter: saturate(1) brightness(1); }
+  50% { filter: saturate(1.12) brightness(1.04); }
+}
+
+.weapon-panel{
+  position:absolute;right:16px;top:16px;z-index:4;width:180px;
+  padding:12px 13px;border:1px solid rgba(85,231,255,.28);border-radius:12px;
+  background:rgba(6,14,28,.82);backdrop-filter:blur(7px);
+  box-shadow:0 0 25px rgba(56,245,255,.08);font-size:11px;letter-spacing:.08em;
+}
+.weapon-title{color:#55e7ff;font-weight:900;margin-bottom:8px}
+.weapon-row{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:6px;color:#dffcff;margin-top:7px}
+.weapon-row b{display:grid;place-items:center;width:21px;height:21px;border-radius:6px;background:rgba(85,231,255,.13);border:1px solid rgba(85,231,255,.35);color:#55e7ff}
+.weapon-row strong{font-size:12px;color:#fff}
+.weapon-panel small{display:block;margin:3px 0 2px 30px;color:rgba(220,245,255,.52);font-size:8px}
+.mobile-controls{grid-template-columns:repeat(5,1fr)!important}
+@media (max-width:700px){
+  .weapon-panel{right:8px;top:8px;width:148px;padding:9px;font-size:9px}
+  .weapon-panel small{font-size:7px}
+  .mobile-controls button{min-width:0}
+}
+
+.laser-status{margin:4px 0 7px;color:#fff36b;font-size:9px;letter-spacing:.12em}
+.laser-status strong{float:right}
+
+.health-powerup{
+  margin-top:7px;padding-top:7px;border-top:1px solid rgba(98,255,138,.16);
+  color:#62ff8a;font-size:9px;letter-spacing:.08em;font-weight:800;
+}
+.health-powerup span{float:right;color:rgba(220,255,230,.55);font-size:7px}
+
+/* Extra arcade motion for the enemy fleet */
+.game-area canvas{will-change:transform,filter}

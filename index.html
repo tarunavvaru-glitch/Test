@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>NEON VOID // Space Shooter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="stars" aria-hidden="true"></div>
+
+  <main class="game-shell">
+    <header class="hud">
+      <div class="brand">
+        <span class="brand-mark">✦</span>
+        <div><strong>NEON VOID</strong><small>DEEP SPACE DEFENSE</small></div>
+      </div>
+      <div class="stat"><span>SCORE</span><b id="score">000000</b></div>
+      <div class="stat"><span>HIGH SCORE</span><b id="highScore">000000</b></div>
+      <div class="stat"><span>LEVEL</span><b id="level">01</b></div>
+      <div class="health-wrap">
+        <span>HULL</span>
+        <div class="health"><i id="healthBar"></i></div>
+        <b id="healthText">100%</b>
+      </div>
+      <div class="hud-actions">
+        <button id="pauseBtn" class="icon-btn" title="Pause (P)" disabled>Ⅱ</button>
+        <button id="restartBtn" class="icon-btn" title="Restart">↻</button>
+      </div>
+    </header>
+
+    <section id="gameArea" class="game-area">
+      <aside class="weapon-panel" aria-label="Weapon ammunition">
+        <div class="weapon-title">WEAPONS</div>
+        <div class="laser-status">LASER <strong id="laserStatus">OFF</strong></div>
+        <div class="health-powerup">✚ HEALTH <span>FULL RESTORE</span></div>
+        <div class="weapon-row"><b>R</b><span>ROCKET</span><strong id="rocketAmmo">3/3</strong></div>
+        <small id="rocketReload">READY</small>
+        <div class="weapon-row"><b>C</b><span>PLASMA</span><strong id="cannonAmmo">12/12</strong></div>
+        <small id="cannonReload">READY</small>
+      </aside>
+      <canvas id="gameCanvas"></canvas>
+
+      <div id="startScreen" class="overlay active">
+        <div class="logo-glow">✦</div>
+        <p class="eyebrow">SYSTEM ONLINE // SECTOR 07</p>
+        <h1>NEON <span>VOID</span></h1>
+        <p class="subtitle">Hold the line. Burn through the swarm. Survive the void.</p>
+        <button id="startBtn" class="primary-btn">LAUNCH MISSION</button>
+        <div class="controls-card">
+          <span>← A</span><small>MOVE</small>
+          <span>SPACE</span><small>FIRE</small><span>R</span><small>ROCKET</small><span>C</span><small>PLASMA</small>
+          <span>P</span><small>PAUSE</small>
+        </div>
+      </div>
+
+      <div id="pauseScreen" class="overlay">
+        <div class="pause-icon">Ⅱ</div>
+        <p class="eyebrow">SYSTEM PAUSED</p>
+        <h2>MISSION FROZEN</h2>
+        <button id="resumeBtn" class="primary-btn">RESUME</button>
+      </div>
+
+      <div id="gameOverScreen" class="overlay">
+        <p class="eyebrow danger">HULL CRITICAL // SIGNAL LOST</p>
+        <h2>GAME OVER</h2>
+        <div class="final-score"><span>FINAL SCORE</span><b id="finalScore">000000</b></div>
+        <p id="recordMsg" class="record"></p>
+        <button id="againBtn" class="primary-btn">RESTART MISSION</button>
+      </div>
+
+      <div class="power-status" id="powerStatus"></div>
+      <div class="tip">ARROW KEYS / A D MOVE <i>•</i> SPACE FIRE <i>•</i> R ROCKET <i>•</i> C PLASMA (RAPID)</div>
+    </section>
+
+    <footer class="footer">
+      <span>© NEON VOID COMMAND</span>
+      <span>THREAT LEVEL <b id="threat">01</b></span>
+    </footer>
+  </main>
+
+  <div class="mobile-controls" aria-label="Touch controls">
+    <button id="leftTouch">◀</button>
+    <button id="rocketTouch">R</button>
+    <button id="fireTouch">✦</button>
+    <button id="cannonTouch">C</button>
+    <button id="rightTouch">▶</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
